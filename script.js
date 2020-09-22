@@ -11,17 +11,34 @@ let selectedWord;
 
 function getRandomword(){
     let value = '';
-    fetch('http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=5&maxLength=15&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5')
+    fetch('https://random-word-api.herokuapp.com//word?number=1')
     .then(res => res.json())
     .then(data => {
-        console.log(data[0].word);
-        selectedWord = data[0].word.toLowerCase().replace('-','').replace(' ','');
-        console.log(selectedWord);
-        value = data[0].word;
+        //console.log(data[0]);
+        selectedWord = data[0];
+        value = data[0];
+        console.log(value);
        // return data[0].word;
     });
     selectedWord = value;
+    
 }
+
+
+// function getRandomword(){
+//     let response = fetch('https://random-word-api.herokuapp.com//word?number=1');
+//     console.log(response.data);
+    //onsole.log(fetch('https://random-word-api.herokuapp.com//word?number=1').data);
+    //.then(res => res.json())
+    // .then(data => {
+    //     console.log(data[0]);
+    //     selectedWord = data[0].toLowerCase().replace('-','').replace(' ','');
+    //     console.log(selectedWord);
+    //     value = data[0];
+    //    // return data[0].word;
+    // });
+    // selectedWord = value;
+//}
 
 
 //const words = ['application', 'programming', 'interface', 'wizard'];
@@ -31,7 +48,7 @@ function getRandomword(){
 const correctLetters = [];
 const wrongLetters = [];
 
-console.log(selectedWord);
+//console.log(selectedWord);
 
 function displayWord() {
     wordEl.innerHTML = `${selectedWord
@@ -116,7 +133,7 @@ playAgainBtn.addEventListener('click', () => {
 
     getRandomword();
 
-    console.log(selectedWord);
+    //console.log(selectedWord);
     displayWord();
 
     updateWrongLettersEl();
